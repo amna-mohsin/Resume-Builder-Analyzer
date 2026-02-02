@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(25px, -40px); }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(148, 163, 184, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(148, 163, 184, 0.6), 0 0 25px rgba(148, 163, 184, 0.4);
+  }
+}
+
+.animate-mesh {
+  animation: float 12s ease-in-out infinite;
+}
+
+/* Ensure background elements don't cause horizontal scrolls */
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure dark mode works properly */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Print styles for PDF export */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  
+  body * {
+    visibility: hidden;
+  }
+  
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+  
+  [data-resume-content],
+  [data-resume-content] * {
+    visibility: visible;
+  }
+  
+  [data-resume-content] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* Ultra-small screen support (10px and up) */
+@media (max-width: 320px) {
+  * {
+    font-size: clamp(8px, 2vw, 16px) !important;
+  }
+  
+  .text-xs { font-size: 8px !important; }
+  .text-sm { font-size: 10px !important; }
+  .text-base { font-size: 12px !important; }
+  .text-lg { font-size: 14px !important; }
+  .text-xl { font-size: 16px !important; }
+  .text-2xl { font-size: 18px !important; }
+  .text-3xl { font-size: 20px !important; }
+  .text-4xl { font-size: 24px !important; }
+}
+
+/* Ensure all interactive elements are touch-friendly on small screens */
+@media (max-width: 480px) {
+  button, a, input, select, textarea {
+    min-height: 32px;
+    min-width: 32px;
+  }
+}
